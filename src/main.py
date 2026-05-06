@@ -19,7 +19,9 @@ def main():
     print(f"\nRandom Distance: {random_distance}")
 
     print("\nDistance Saved:", random_distance - optimized_distance)
+    improvement = ((random_distance - optimized_distance) / random_distance) * 100
 
+    print(f"Efficiency Improvement: {improvement:.2f}%")    
 
 if __name__ == "__main__":
     main()
