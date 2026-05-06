@@ -1,6 +1,7 @@
 from dijkstra import dijkstra
 import random
 
+
 def optimize_delivery_route(graph, start):
 
     unvisited = set(graph.keys())
@@ -32,7 +33,15 @@ def optimize_delivery_route(graph, start):
 
         unvisited.remove(nearest_location)
 
+    # Return to warehouse
+    distances, _ = dijkstra(graph, current_location)
+
+    total_distance += distances[start]
+
+    route.append(start)
+
     return route, total_distance
+
 
 def generate_random_route(graph, start):
 
@@ -54,5 +63,12 @@ def generate_random_route(graph, start):
         distances, _ = dijkstra(graph, current_location)
 
         total_distance += distances[next_location]
+
+    # Return to warehouse
+    distances, _ = dijkstra(graph, route[-1])
+
+    total_distance += distances[start]
+
+    route.append(start)
 
     return route, total_distance
