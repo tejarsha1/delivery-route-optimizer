@@ -1,22 +1,18 @@
 from graph import load_graph
-
-
-def print_graph(graph):
-    print("\nDelivery Network Loaded Successfully\n")
-
-    for node in graph:
-        connections = []
-
-        for neighbor, distance in graph[node]:
-            connections.append(f"{neighbor}({distance})")
-
-        print(f"{node} -> {', '.join(connections)}")
+from dijkstra import dijkstra, get_shortest_path
 
 
 def main():
-    file_path = "../data/delivery_network.csv"
-    graph = load_graph(file_path)
-    print_graph(graph)
+    graph = load_graph("../data/delivery_network.csv")
+
+    distances, previous = dijkstra(graph, "Warehouse")
+
+    destination = "T"
+    path = get_shortest_path(previous, "Warehouse", destination)
+
+    print("Shortest path from Warehouse to", destination)
+    print("Path:", " -> ".join(path))
+    print("Distance:", distances[destination])
 
 
 if __name__ == "__main__":
