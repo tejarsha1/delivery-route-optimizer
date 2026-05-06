@@ -1,18 +1,24 @@
 from graph import load_graph
-from optimizer import optimize_delivery_route
+from optimizer import optimize_delivery_route, generate_random_route
 
 
 def main():
 
     graph = load_graph("../data/delivery_network.csv")
 
-    route, total_distance = optimize_delivery_route(graph, "Warehouse")
+    optimized_route, optimized_distance = optimize_delivery_route(graph, "Warehouse")
+
+    random_route, random_distance = generate_random_route(graph, "Warehouse")
 
     print("\nOptimized Delivery Route\n")
+    print(" -> ".join(optimized_route))
+    print(f"\nOptimized Distance: {optimized_distance}")
 
-    print(" -> ".join(route))
+    print("\nRandom Delivery Route\n")
+    print(" -> ".join(random_route))
+    print(f"\nRandom Distance: {random_distance}")
 
-    print(f"\nTotal Distance: {total_distance}")
+    print("\nDistance Saved:", random_distance - optimized_distance)
 
 
 if __name__ == "__main__":
