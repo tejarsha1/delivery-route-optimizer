@@ -47,7 +47,7 @@ Example:
 
 ## Algorithm Used
 
-The project uses :contentReference[oaicite:0]{index=0} to compute shortest paths in a weighted graph.
+The project uses Dijkstra’s Algorithm to compute shortest paths in a weighted graph.
 
 ### Graph Representation
 
